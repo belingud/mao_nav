@@ -93,9 +93,9 @@ export const mockData = {
         },
         {
           "id": "yuanbao",
-          "name": "元包",
+          "name": "元宝",
           "url": "https://yuanbao.tencent.com",
-          "description": "腾讯元包",
+          "description": "腾讯元宝",
           "icon": "/sitelogo/yuanbao.tencent.com.ico"
         },
         {
@@ -204,7 +204,7 @@ export const mockData = {
           "url": "https://www.postman.com",
           "description": "API测试工具",
           "icon": "/sitelogo/www.postman.com.ico"
-        },
+        }
       ]
     },
     {
@@ -213,13 +213,6 @@ export const mockData = {
       "icon": "👥",
       "order": 6,
       "sites": [
-        {
-          "id": "stackoverflow",
-          "name": "Stack Overflow",
-          "url": "https://stackoverflow.com",
-          "description": "程序员问答社区",
-          "icon": "/sitelogo/stackoverflow.com.ico"
-        },
         {
           "id": "linuxdo",
           "name": "Linux.do",
@@ -448,7 +441,7 @@ export const mockData = {
           "url": "https://www.douban.com",
           "description": "文艺生活社区",
           "icon": "/sitelogo/www.douban.com.ico"
-        },
+        }
       ]
     },
     {
