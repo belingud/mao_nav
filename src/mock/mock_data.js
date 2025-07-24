@@ -412,6 +412,13 @@ export const mockData = {
           "url": "https://tinypng.com",
           "description": "图片压缩工具",
           "icon": "/sitelogo/tinypng.com.ico"
+        },
+        {
+          "id": "pdf24",
+          "name": "PDF24",
+          "url": "https://tools.pdf24.org/zh/",
+          "description": "PDF瑞士军刀",
+          "icon": "/sitelogo/tools.pdf24.org.ico"
         }
       ]
     },
