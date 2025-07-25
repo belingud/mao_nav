@@ -118,6 +118,20 @@ export const mockData = {
           "url": "https://grok.com",
           "description": "Grok",
           "icon": "/sitelogo/grok.com.ico"
+        },
+        {
+          "id": "gemini",
+          "name": "Gemini",
+          "url": "https://gemini.google.com/app",
+          "description": "Gemini",
+          "icon": "/sitelogo/gemini.google.com.ico"
+        },
+        {
+          "id": "deepseek",
+          "name": "DeepSeek",
+          "url": "https://chat.deepseek.com/",
+          "description": "DeepSeek",
+          "icon": "/sitelogo/chat.deepseek.com.ico"
         }
       ]
     },
