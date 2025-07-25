@@ -14,6 +14,8 @@ from urllib.parse import urljoin, urlparse
 
 import httpx
 from bs4 import BeautifulSoup
+from PIL import Image
+import io
 
 
 # ==================== 常量配置 ====================
@@ -29,6 +31,7 @@ HEADERS = {
 }
 
 ICON_CONTENT_TYPES = ["image/x-icon", "image/vnd.microsoft.icon"]
+PNG_CONTENT_TYPES = ["image/png"]
 FAVICON_RELS = ["icon", "shortcut icon", "apple-touch-icon"]
 
 
@@ -92,13 +95,34 @@ def get_all_http_icons(data: Dict) -> List[Dict]:
 
 
 # ==================== 图标获取模块 ====================
-def _is_valid_ico_response(response: httpx.Response) -> bool:
-    """检查响应是否为有效的 ico 文件"""
+def convert_png_to_ico(png_data: bytes) -> bytes:
+    """将PNG数据转换为ICO格式"""
+    try:
+        # 从字节数据创建PIL图像
+        png_image = Image.open(io.BytesIO(png_data))
+        
+        # 转换为RGBA模式（支持透明度）
+        if png_image.mode != 'RGBA':
+            png_image = png_image.convert('RGBA')
+        
+        # 创建ICO格式的字节流
+        ico_buffer = io.BytesIO()
+        png_image.save(ico_buffer, format='ICO', sizes=[(32, 32)])
+        ico_buffer.seek(0)
+        
+        return ico_buffer.getvalue()
+    except Exception as e:
+        print(f"❌ PNG转ICO失败: {e}")
+        return b""
+def _is_valid_icon_response(response: httpx.Response) -> bool:
+    """检查响应是否为有效的图标文件（ICO或PNG）"""
     if not response.is_success or len(response.content) < MIN_ICON_SIZE:
         return False
 
     content_type = response.headers.get("Content-Type", "")
-    return any(ico_type in content_type for ico_type in ICON_CONTENT_TYPES)
+    # 支持ICO和PNG格式
+    return (any(ico_type in content_type for ico_type in ICON_CONTENT_TYPES) or 
+            any(png_type in content_type for png_type in PNG_CONTENT_TYPES))
 
 
 def _try_favicon_ico(base_url: str, session: httpx.Client) -> Optional[str]:
@@ -106,7 +130,7 @@ def _try_favicon_ico(base_url: str, session: httpx.Client) -> Optional[str]:
     ico_url = f"{base_url}/favicon.ico"
     try:
         resp = session.get(ico_url, headers=HEADERS, timeout=REQUEST_TIMEOUT)
-        if _is_valid_ico_response(resp):
+        if _is_valid_icon_response(resp):
             return ico_url
     except httpx.RequestError:
         pass
@@ -124,7 +148,7 @@ def _try_html_favicon(site_url: str, base_url: str, session: httpx.Client) -> Op
             if tag and tag.get("href"):
                 icon_url = urljoin(base_url, tag["href"])
                 resp = session.get(icon_url, headers=HEADERS, timeout=REQUEST_TIMEOUT)
-                if _is_valid_ico_response(resp):
+                if _is_valid_icon_response(resp):
                     return icon_url
     except httpx.RequestError:
         pass
@@ -133,8 +157,8 @@ def _try_html_favicon(site_url: str, base_url: str, session: httpx.Client) -> Op
 
 def resolve_favicon_url(site_url: str, session: httpx.Client) -> Optional[str]:
     """
-    尝试获取网站的 .ico 格式 favicon 地址
-    优先使用 /favicon.ico，如果不是 .ico 格式则解析 HTML
+    尝试获取网站的图标地址（ICO 或 PNG）
+    优先使用 /favicon.ico，如果找不到或无效，则解析 HTML
     """
     parsed_url = urlparse(site_url)
     base_url = f"{parsed_url.scheme}://{parsed_url.netloc}"
@@ -151,7 +175,7 @@ def resolve_favicon_url(site_url: str, session: httpx.Client) -> Optional[str]:
 # ==================== 下载模块 ====================
 def download_icon(icon_info: Dict, output_dir: Path, session: httpx.Client) -> bool:
     """
-    下载单个图标文件（只下载 .ico 格式）
+    下载单个图标文件，如果是PNG则转换为ICO格式
     """
     site_url = icon_info["url"]
     filename = icon_info["filename"]
@@ -166,15 +190,24 @@ def download_icon(icon_info: Dict, output_dir: Path, session: httpx.Client) -> b
     try:
         icon_url = resolve_favicon_url(site_url, session)
         if not icon_url:
-            print(f"❌ 未找到有效的 .ico 图标: {site_url}")
+            print(f"❌ 未找到有效的图标: {site_url}")
             return False
 
-        with session.stream("GET", icon_url, headers=HEADERS, timeout=REQUEST_TIMEOUT) as resp:
-            resp.raise_for_status()
+        resp = session.get(icon_url, headers=HEADERS, timeout=REQUEST_TIMEOUT)
+        resp.raise_for_status()
 
-            with open(filepath, "wb") as f:
-                for chunk in resp.iter_bytes(1024):
-                    f.write(chunk)
+        content_type = resp.headers.get("Content-Type", "")
+        icon_data = resp.content
+
+        # 如果是PNG，则转换为ICO
+        if any(png_type in content_type for png_type in PNG_CONTENT_TYPES):
+            print("ℹ️  检测到PNG格式，正在转换为ICO...")
+            icon_data = convert_png_to_ico(icon_data)
+            if not icon_data:
+                return False
+
+        with open(filepath, "wb") as f:
+            f.write(icon_data)
 
         print(f"✅ 下载成功: {filename} ({filepath.stat().st_size} bytes)")
         return True
@@ -192,7 +225,6 @@ def _create_client() -> httpx.Client:
     return httpx.Client(
         timeout=REQUEST_TIMEOUT,
         limits=httpx.Limits(max_connections=10, max_keepalive_connections=5),
-        transport=httpx.HTTPTransport(retries=MAX_RETRIES),
     )
 
 
