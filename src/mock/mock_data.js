@@ -184,11 +184,18 @@ export const mockData = {
           "icon": "/sitelogo/www.huaweicloud.com.ico"
         },
         {
-          "id": "site-1752644060499",
+          "id": "pasyun",
           "name": "怕死云",
           "url": "https://www.pasyun.com/",
           "description": "ipv6机器",
           "icon": "/sitelogo/www.pasyun.com.ico"
+        },
+        {
+          "id": "se.net",
+          "name": "极云网络",
+          "url": "https://sa.net",
+          "description": "极云网络",
+          "icon": "/sitelogo/sa.net.ico"
         }
       ]
     },

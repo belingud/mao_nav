@@ -1,4 +1,10 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S uv run --script
+#
+# /// script
+# requires-python = ">=3.11"
+# dependencies = ["httpx", "beautifulsoup4", "Pillow", "colorlog", "socksio"]
+# ///
+
 # -*- coding: utf-8 -*-
 """
 下载 mock_data.js 中所有 HTTP 图标到 public/sitelogo 目录
@@ -16,6 +22,20 @@ import httpx
 from bs4 import BeautifulSoup
 from PIL import Image
 import io
+
+import colorlog
+
+handler = colorlog.StreamHandler()
+handler.setFormatter(
+    colorlog.ColoredFormatter(
+        "%(log_color)s[%(levelname)s]%(reset)s %(asctime)s - %(filename)s:%(lineno)d: %(message)s",
+        datefmt="%H:%M:%S",
+    )
+)
+
+logger = colorlog.getLogger("download_ico")
+logger.setLevel(colorlog.INFO)
+logger.addHandler(handler)
 
 
 # ==================== 常量配置 ====================
@@ -39,7 +59,7 @@ FAVICON_RELS = ["icon", "shortcut icon", "apple-touch-icon"]
 def extract_mock_data() -> Optional[Dict]:
     """从 mock_data.js 文件中提取数据"""
     if not os.path.exists(MOCK_DATA_FILE):
-        print(f"❌ 找不到文件: {MOCK_DATA_FILE}")
+        logger.info(f"❌ 找不到文件: {MOCK_DATA_FILE}")
         return None
 
     try:
@@ -49,16 +69,16 @@ def extract_mock_data() -> Optional[Dict]:
         # 使用正则表达式提取 JSON 数据
         match = re.search(r"export const mockData = ({.*})", content, re.DOTALL)
         if not match:
-            print("❌ 无法解析 mock_data.js 文件")
+            logger.info("❌ 无法解析 mock_data.js 文件")
             return None
 
         data_str = match.group(1)
         return json.loads(data_str)
     except json.JSONDecodeError as e:
-        print(f"❌ JSON 解析错误: {e}")
+        logger.info(f"❌ JSON 解析错误: {e}")
         return None
     except Exception as e:
-        print(f"❌ 读取文件错误: {e}")
+        logger.info(f"❌ 读取文件错误: {e}")
         return None
 
 
@@ -100,20 +120,22 @@ def convert_png_to_ico(png_data: bytes) -> bytes:
     try:
         # 从字节数据创建PIL图像
         png_image = Image.open(io.BytesIO(png_data))
-        
+
         # 转换为RGBA模式（支持透明度）
-        if png_image.mode != 'RGBA':
-            png_image = png_image.convert('RGBA')
-        
+        if png_image.mode != "RGBA":
+            png_image = png_image.convert("RGBA")
+
         # 创建ICO格式的字节流
         ico_buffer = io.BytesIO()
-        png_image.save(ico_buffer, format='ICO', sizes=[(32, 32)])
+        png_image.save(ico_buffer, format="ICO", sizes=[(32, 32)])
         ico_buffer.seek(0)
-        
+
         return ico_buffer.getvalue()
     except Exception as e:
-        print(f"❌ PNG转ICO失败: {e}")
+        logger.info(f"❌ PNG转ICO失败: {e}")
         return b""
+
+
 def _is_valid_icon_response(response: httpx.Response) -> bool:
     """检查响应是否为有效的图标文件（ICO或PNG）"""
     if not response.is_success or len(response.content) < MIN_ICON_SIZE:
@@ -121,8 +143,9 @@ def _is_valid_icon_response(response: httpx.Response) -> bool:
 
     content_type = response.headers.get("Content-Type", "")
     # 支持ICO和PNG格式
-    return (any(ico_type in content_type for ico_type in ICON_CONTENT_TYPES) or 
-            any(png_type in content_type for png_type in PNG_CONTENT_TYPES))
+    return any(ico_type in content_type for ico_type in ICON_CONTENT_TYPES) or any(
+        png_type in content_type for png_type in PNG_CONTENT_TYPES
+    )
 
 
 def _try_favicon_ico(base_url: str, session: httpx.Client) -> Optional[str]:
@@ -181,16 +204,12 @@ def download_icon(icon_info: Dict, output_dir: Path, session: httpx.Client) -> b
     filename = icon_info["filename"]
     filepath = output_dir / filename
 
-    if filepath.exists():
-        print(f"⏭️  跳过已存在的文件: {filename}")
-        return True
-
-    print(f"📥 获取图标: {icon_info['site_name']} ({filename})")
+    logger.info(f"📥 获取图标: {icon_info['site_name']} ({filename})")
 
     try:
         icon_url = resolve_favicon_url(site_url, session)
         if not icon_url:
-            print(f"❌ 未找到有效的图标: {site_url}")
+            logger.info(f"❌ 未找到有效的图标: {site_url}")
             return False
 
         resp = session.get(icon_url, headers=HEADERS, timeout=REQUEST_TIMEOUT)
@@ -201,7 +220,7 @@ def download_icon(icon_info: Dict, output_dir: Path, session: httpx.Client) -> b
 
         # 如果是PNG，则转换为ICO
         if any(png_type in content_type for png_type in PNG_CONTENT_TYPES):
-            print("ℹ️  检测到PNG格式，正在转换为ICO...")
+            logger.info("ℹ️  检测到PNG格式，正在转换为ICO...")
             icon_data = convert_png_to_ico(icon_data)
             if not icon_data:
                 return False
@@ -209,14 +228,14 @@ def download_icon(icon_info: Dict, output_dir: Path, session: httpx.Client) -> b
         with open(filepath, "wb") as f:
             f.write(icon_data)
 
-        print(f"✅ 下载成功: {filename} ({filepath.stat().st_size} bytes)")
+        logger.info(f"✅ 下载成功: {filename} ({filepath.stat().st_size} bytes)")
         return True
 
     except httpx.RequestError as e:
-        print(f"❌ 下载失败: {filename} - {e}")
+        logger.info(f"❌ 下载失败: {filename} - {e}")
         return False
     except Exception as e:
-        print(f"❌ 保存失败: {filename} - {e}")
+        logger.info(f"❌ 保存失败: {filename} - {e}")
         return False
 
 
@@ -228,57 +247,81 @@ def _create_client() -> httpx.Client:
     )
 
 
+def _check_icons_to_download(icons: List[Dict], output_dir: Path) -> List[Dict]:
+    """检查哪些图标需要下载（不存在的文件）"""
+    icons_to_download = []
+    existing_icons = []
+
+    for icon_info in icons:
+        filepath = output_dir / icon_info["filename"]
+        if filepath.exists():
+            existing_icons.append(icon_info)
+        else:
+            icons_to_download.append(icon_info)
+
+    if existing_icons:
+        logger.info(f"ℹ️  跳过已存在的图标: {len(existing_icons)} 个")
+
+    return icons_to_download
+
+
 def _print_download_summary(
     success_count: int, failed_count: int, failed_urls: List[str], output_dir: Path
 ) -> None:
     """打印下载结果摘要"""
-    print("\n📊 下载完成!")
-    print(f"✅ 成功: {success_count}")
-    print(f"❌ 失败: {failed_count}")
+    logger.info("\n📊 下载完成!")
+    logger.info(f"✅ 成功: {success_count}")
+    logger.info(f"❌ 失败: {failed_count}")
 
     if failed_urls:
-        print("❌ 失败的 URL:")
+        logger.info("❌ 失败的 URL:")
         for url in failed_urls:
-            print(f"  - {url}")
+            logger.info(f"  - {url}")
 
-    print(f"📁 文件保存在: {output_dir.absolute()}")
+    logger.info(f"📁 文件保存在: {output_dir.absolute()}")
 
 
 # ==================== 主程序模块 ====================
 def main() -> None:
     """主函数"""
-    print("🚀 开始下载图标...")
+    logger.info("🚀 开始下载图标...")
 
     # 创建输出目录
     output_dir = Path(OUTPUT_DIR)
     output_dir.mkdir(parents=True, exist_ok=True)
-    print(f"📁 输出目录: {output_dir.absolute()}")
+    logger.info(f"📁 输出目录: {output_dir.absolute()}")
 
     # 提取数据
-    print("📖 读取 mock_data.js...")
+    logger.info("📖 读取 mock_data.js...")
     data = extract_mock_data()
     if not data:
         return
 
     # 获取所有HTTP图标
     http_icons = get_all_http_icons(data)
-    print(f"🔍 找到 {len(http_icons)} 个 HTTP 图标")
+    logger.info(f"🔍 找到 {len(http_icons)} 个 HTTP 图标")
 
     if not http_icons:
-        print("✅ 没有需要下载的图标")
+        logger.info("✅ 没有需要下载的图标")
         return
 
-    # 创建客户端并下载图标
+    # 检查哪些图标需要下载
+    logger.info("🔍 检查需要下载的图标...")
+    icons_to_download = _check_icons_to_download(http_icons, output_dir)
+
+    if not icons_to_download:
+        logger.info("✅ 所有图标已存在，无需下载")
+        return
+
+    logger.info(f"📦 需要下载 {len(icons_to_download)} 个图标\n")
+
+    # 创建客户端并批量下载图标
     success_count = 0
     failed_count = 0
     failed_urls = []
 
-    print(f"\n📦 开始下载 {len(http_icons)} 个图标...\n")
-
     with _create_client() as client:
-        for i, icon_info in enumerate(http_icons, 1):
-            print(f"[{i}/{len(http_icons)}] ", end="")
-
+        for icon_info in icons_to_download:
             if download_icon(icon_info, output_dir, client):
                 success_count += 1
             else:
@@ -293,8 +336,8 @@ if __name__ == "__main__":
     try:
         main()
     except KeyboardInterrupt:
-        print("\n❌ 用户中断下载")
+        logger.info("\n❌ 用户中断下载")
         sys.exit(1)
     except Exception as e:
-        print(f"\n❌ 程序错误: {e}")
+        logger.info(f"\n❌ 程序错误: {e}")
         sys.exit(1)
