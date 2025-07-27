@@ -137,7 +137,7 @@ export const mockData = {
           "id": "mcpflow",
           "name": "MCPFlow",
           "url": "https://mcpflow.io",
-          "description": "MCPFlow - MCP Chat with gpt-4.1-mini",
+          "description": "MCPFlow - Chat gpt-4.1-mini",
           "icon": "/sitelogo/mcpflow.io.ico"
         }
       ]
