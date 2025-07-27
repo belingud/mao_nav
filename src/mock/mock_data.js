@@ -132,6 +132,13 @@ export const mockData = {
           "url": "https://chat.deepseek.com/",
           "description": "DeepSeek",
           "icon": "/sitelogo/chat.deepseek.com.ico"
+        },
+        {
+          "id": "mcpflow",
+          "name": "MCPFlow",
+          "url": "https://mcpflow.io",
+          "description": "MCPFlow - MCP Chat with gpt-4.1-mini",
+          "icon": "/sitelogo/mcpflow.io.ico"
         }
       ]
     },
