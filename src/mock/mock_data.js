@@ -454,6 +454,13 @@ export const mockData = {
           "url": "https://tools.pdf24.org/zh/",
           "description": "PDF瑞士军刀",
           "icon": "/sitelogo/tools.pdf24.org.ico"
+        },
+        {
+          "id": "mail.td",
+          "name": "Mail.TD",
+          "url": "https://mail.td/zh",
+          "description": "临时邮箱",
+          "icon": "/sitelogo/mail.td.ico"
         }
       ]
     },
