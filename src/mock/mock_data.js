@@ -459,8 +459,15 @@ export const mockData = {
           "id": "mail.td",
           "name": "Mail.TD",
           "url": "https://mail.td/zh",
-          "description": "临时邮箱",
+          "description": "临时邮箱（免费接口）",
           "icon": "/sitelogo/mail.td.ico"
+        },
+        {
+          "id": "moemail",
+          "name": "MoeMail",
+          "url": "https://moemail.app",
+          "description": "临时邮箱",
+          "icon": "/sitelogo/moemail.app.ico"
         }
       ]
     },
