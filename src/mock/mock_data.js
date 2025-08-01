@@ -468,6 +468,13 @@ export const mockData = {
           "url": "https://moemail.app",
           "description": "临时邮箱",
           "icon": "/sitelogo/moemail.app.ico"
+        },
+        {
+          "id": "yyzz",
+          "name": "直连提取",
+          "url": "https://yyzz.426720.xyz/#",
+          "description": "提取网盘直链",
+          "icon": ""
         }
       ]
     },
