@@ -88,6 +88,11 @@ def get_all_http_icons(data: Dict) -> List[Dict]:
 
     for category in data.get("categories", []):
         for site in category.get("sites", []):
+            # 如果 icon 字段为空，则跳过
+            if not site.get("icon"):
+                logger.info(f"⏭️  跳过空图标: {site.get('name')}")
+                continue
+
             icon_url = site.get("url", "")
             if not icon_url.startswith("http"):
                 continue
