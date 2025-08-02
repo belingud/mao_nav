@@ -52,7 +52,7 @@ export const mockData = {
         {
           "id": "chatgpt",
           "name": "ChatGPT",
-          "url": "https://chat.openai.com",
+          "url": "https://chatgpt.com",
           "description": "OpenAI对话AI助手",
           "icon": "/sitelogo/chat.openai.com.ico"
         },
@@ -146,6 +146,13 @@ export const mockData = {
           "url": "https://chat.z.ai",
           "description": "Z.ai",
           "icon": "/sitelogo/chat.z.ai.ico"
+        },
+        {
+          "id": "hohai",
+          "name": "Hohai",
+          "url": "https://hohai.eu.org/",
+          "description": "🤖🆓免费AI",
+          "icon": "/sitelogo/hohai.eu.org.ico"
         }
       ]
     },
