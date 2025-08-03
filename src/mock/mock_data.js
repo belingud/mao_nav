@@ -477,6 +477,13 @@ export const mockData = {
           "icon": "/sitelogo/moemail.app.ico"
         },
         {
+          "id": "temmail",
+          "name": "Tempmail",
+          "url": "https://temp-mail.io/zh",
+          "description": "Tempmail",
+          "icon": "/sitelogo/temp-mail.io.ico"
+        },
+        {
           "id": "yyzz",
           "name": "直连提取",
           "url": "https://yyzz.426720.xyz/#",
