@@ -217,6 +217,13 @@ export const mockData = {
           "url": "https://sa.net",
           "description": "极云网络",
           "icon": "/sitelogo/sa.net.ico"
+        },
+        {
+          "id": "leancloud",
+          "name": "LeanCloud",
+          "url": "https://www.leancloud.cn/",
+          "description": "一站式后端服务",
+          "icon": "/sitelogo/leancloud.cn.ico"
         }
       ]
     },
