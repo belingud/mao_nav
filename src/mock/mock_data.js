@@ -293,38 +293,24 @@ export const mockData = {
       ]
     },
     {
-      "id": "design",
-      "name": "设计工具",
-      "icon": "🎨",
+      "id": "clouddisk",
+      "name": "云盘",
+      "icon": "☁️",
       "order": 4,
       "sites": [
         {
-          "id": "figma",
-          "name": "Figma",
-          "url": "https://figma.com",
-          "description": "UI设计工具",
-          "icon": "/sitelogo/figma.com.ico"
+          "id": "google-drive",
+          "name": "Google Drive",
+          "url": "https://drive.google.com",
+          "description": "Google Drive",
+          "icon": "/sitelogo/drive.google.com.ico"
         },
         {
-          "id": "sketch",
-          "name": "Sketch",
-          "url": "https://www.sketch.com",
-          "description": "界面设计工具",
-          "icon": "/sitelogo/www.sketch.com.ico"
-        },
-        {
-          "id": "canva",
-          "name": "Canva",
-          "url": "https://www.canva.com",
-          "description": "在线设计平台",
-          "icon": "/sitelogo/www.canva.com.ico"
-        },
-        {
-          "id": "adobe-xd",
-          "name": "Adobe XD",
-          "url": "https://www.adobe.com/products/xd.html",
-          "description": "用户体验设计工具",
-          "icon": "/sitelogo/www.adobe.com.ico"
+          "id": "pansou",
+          "name": "PanSo",
+          "url": "https://so.252035.xyz",
+          "description": "聚合网盘搜索",
+          "icon": "/sitelogo/so.252035.xyz.ico"
         }
       ]
     },
