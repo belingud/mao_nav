@@ -61,6 +61,30 @@
           <p class="setting-description">当前标题: {{ currentTitle || '未设置' }}</p>
         </div>
 
+        <!-- 默认搜索引擎设置 -->
+        <div class="setting-group">
+          <label>默认搜索引擎:</label>
+          <div class="search-engine-input-group">
+            <select v-model="searchEngine" class="search-engine-select">
+              <option
+                v-for="option in searchEngineOptions"
+                :key="option.value"
+                :value="option.value"
+              >
+                {{ option.label }}
+              </option>
+            </select>
+            <button
+              @click="saveSearchEngineToGitHub"
+              :disabled="searchEngineSaving || searchEngine === currentSearchEngine"
+              class="save-search-engine-btn"
+            >
+              {{ searchEngineSaving ? '保存中...' : '💾 保存设置' }}
+            </button>
+          </div>
+          <p class="setting-description">当前搜索引擎: {{ searchEngineOptions.find(opt => opt.value === currentSearchEngine)?.label || '未设置' }}</p>
+        </div>
+
         <!-- Logo设置 -->
         <div class="setting-group">
           <label>网站Logo:</label>
@@ -284,6 +308,19 @@ const websiteTitle = ref('')
 const currentTitle = ref('')
 const titleSaving = ref(false)
 
+// 搜索引擎设置
+const searchEngine = ref('bing')
+const currentSearchEngine = ref('bing')
+const searchEngineSaving = ref(false)
+
+// 搜索引擎选项
+const searchEngineOptions = [
+  { value: 'google', label: 'Google' },
+  { value: 'baidu', label: '百度' },
+  { value: 'bing', label: 'Bing' },
+  { value: 'duckduckgo', label: 'DuckDuckGo' }
+]
+
 // Logo设置
 const logoFileInput = ref(null)
 const selectedLogoFile = ref(null)
@@ -353,10 +390,16 @@ const loadWebsiteSettings = async () => {
     const data = await loadCategoriesFromGitHub()
     currentTitle.value = data.title || '猫猫导航'
     websiteTitle.value = currentTitle.value
+
+    // 加载搜索引擎设置
+    currentSearchEngine.value = data.search || 'bing'
+    searchEngine.value = currentSearchEngine.value
   } catch (error) {
     console.error('加载网站设置失败:', error)
     currentTitle.value = '猫猫导航'
     websiteTitle.value = '猫猫导航'
+    currentSearchEngine.value = 'bing'
+    searchEngine.value = 'bing'
   }
 }
 
@@ -404,6 +447,43 @@ const saveTitleToGitHub = async () => {
     )
   } finally {
     titleSaving.value = false
+  }
+}
+
+// 保存搜索引擎设置到GitHub
+const saveSearchEngineToGitHub = async () => {
+  searchEngineSaving.value = true
+  try {
+    // 加载当前数据
+    const data = await loadCategoriesFromGitHub()
+
+    // 更新搜索引擎
+    data.search = searchEngine.value
+
+    // 保存到GitHub
+    await saveCategoriesToGitHub(data)
+
+    currentSearchEngine.value = searchEngine.value
+    showDialog(
+      'success',
+      '🎉 默认搜索引擎保存成功',
+      '您的默认搜索引擎设置已成功保存到GitHub仓库！',
+      [
+        '• 更改将在 2-3 分钟内自动部署到线上',
+        '• 部署完成后，用户访问网站时将默认使用新的搜索引擎',
+        '• 如有问题，请检查Vercel或CFpage是否触发自动部署'
+      ]
+    )
+  } catch (error) {
+    console.error('保存搜索引擎设置失败:', error)
+    showDialog(
+      'error',
+      '❌ 保存失败',
+      '默认搜索引擎设置保存过程中发生错误，请重试',
+      [`• 错误详情: ${error.message}`]
+    )
+  } finally {
+    searchEngineSaving.value = false
   }
 }
 
@@ -864,6 +944,50 @@ onMounted(() => {
   cursor: not-allowed;
 }
 
+/* 搜索引擎设置样式 */
+.search-engine-input-group {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.search-engine-select {
+  flex: 1;
+  padding: 10px 15px;
+  border: 2px solid #e9ecef;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+  background: white;
+  cursor: pointer;
+}
+
+.search-engine-select:focus {
+  outline: none;
+  border-color: #3498db;
+}
+
+.save-search-engine-btn {
+  padding: 10px 20px;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.save-search-engine-btn:hover:not(:disabled) {
+  background: #2980b9;
+}
+
+.save-search-engine-btn:disabled {
+  background: #bdc3c7;
+  cursor: not-allowed;
+}
+
 /* Logo设置样式 */
 .logo-upload-area {
   display: flex;
@@ -975,6 +1099,11 @@ onMounted(() => {
   }
 
   .title-input-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-engine-input-group {
     flex-direction: column;
     align-items: stretch;
   }
