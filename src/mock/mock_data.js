@@ -248,11 +248,11 @@ export const mockData = {
           "icon": "/sitelogo/code.visualstudio.com.ico"
         },
         {
-          "id": "postman",
-          "name": "Postman",
-          "url": "https://www.postman.com",
+          "id": "hoppscotch",
+          "name": "Hoppscotch",
+          "url": "https://hoppscotch.io/",
           "description": "API测试工具",
-          "icon": "/sitelogo/www.postman.com.ico"
+          "icon": "/sitelogo/hoppscotch.io.ico"
         }
       ]
     },
