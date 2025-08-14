@@ -432,7 +432,7 @@ export const mockData = {
           "name": "锤子工具箱",
           "url": "https://www.toolhelper.cn",
           "description": "在线工具大全",
-          "icon": "/sitelogo/toolhelper.cn.ico"
+          "icon": "/sitelogo/www.toolhelper.cn.ico"
         },
         {
           "id": "json-formatter",
