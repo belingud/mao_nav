@@ -170,6 +170,13 @@ export const mockData = {
           "icon": "/sitelogo/www.cloudflare.com.ico"
         },
         {
+          "id": "northflank",
+          "name": "Northflank",
+          "url": "https://app.northflank.com",
+          "description": "容器部署平台",
+          "icon": "/siteslogo/app.northflank.com.ico"
+        },
+        {
           "id": "vercel",
           "name": "Vercel",
           "url": "https://vercel.com",
