@@ -174,7 +174,7 @@ export const mockData = {
           "name": "Northflank",
           "url": "https://app.northflank.com",
           "description": "容器部署平台",
-          "icon": "/siteslogo/app.northflank.com.ico"
+          "icon": "/sitelogo/app.northflank.com.ico"
         },
         {
           "id": "vercel",
