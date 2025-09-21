@@ -313,6 +313,13 @@ export const mockData = {
           "icon": "/sitelogo/drive.google.com.ico"
         },
         {
+          "id": "panso.me",
+          "name": "夸克盘搜",
+          "url": "https://qk.panso.me",
+          "description": "夸克盘搜",
+          "icon": "/sitelogo/qk.panso.me.ico"
+        },
+        {
           "id": "pansou",
           "name": "PanSo",
           "url": "https://so.252035.xyz",
