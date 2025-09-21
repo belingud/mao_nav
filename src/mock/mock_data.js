@@ -532,6 +532,13 @@ export const mockData = {
           "url": "https://www.douban.com",
           "description": "文艺生活社区",
           "icon": "/sitelogo/www.douban.com.ico"
+        },
+        {
+          "id": "ddys",
+          "name": "低端影视",
+          "url": "https://ddys.pro",
+          "description": "最新影视资源",
+          "icon": "/sitelogo/ddys.pro.ico"
         }
       ]
     },
