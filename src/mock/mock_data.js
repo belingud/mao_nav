@@ -260,6 +260,13 @@ export const mockData = {
           "url": "https://hoppscotch.io/",
           "description": "API测试工具",
           "icon": "/sitelogo/hoppscotch.io.ico"
+        },
+        {
+          "id": "grep",
+          "name": "Grep",
+          "url": "https://grep.app",
+          "description": "Grep",
+          "icon": "/sitelogo/grep.app.ico"
         }
       ]
     },
