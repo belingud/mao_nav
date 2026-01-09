@@ -153,6 +153,13 @@ export const mockData = {
           "url": "https://hohai.eu.org/",
           "description": "🤖🆓免费AI",
           "icon": "/sitelogo/hohai.eu.org.ico"
+        },
+        {
+          "id": "mirothinker",
+          "name": "MiroThinker",
+          "url": "https://dr.miromind.ai/",
+          "description": "MiroThinker DeepResearch",
+          "icon": "/sitelogo/dr.miromind.ai.ico"
         }
       ]
     },
