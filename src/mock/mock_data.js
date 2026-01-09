@@ -446,6 +446,13 @@ export const mockData = {
           "url": "https://www.coursera.org",
           "description": "在线课程平台",
           "icon": "/sitelogo/www.coursera.org.ico"
+        },
+        {
+          "id": "ruanyifeng",
+          "name": "阮一峰的博客",
+          "url": "https://www.ruanyifeng.com/blog/",
+          "description": "阮一峰的博客",
+          "icon": "/sitelogo/www.ruanyifeng.com.ico"
         }
       ]
     },
@@ -548,11 +555,11 @@ export const mockData = {
           "icon": "/sitelogo/www.douban.com.ico"
         },
         {
-          "id": "ddys",
-          "name": "低端影视",
-          "url": "https://ddys.pro",
-          "description": "最新影视资源",
-          "icon": "/sitelogo/ddys.pro.ico"
+          "id": "onlineplayer",
+          "name": "OnlinePlayer",
+          "url": "https://onlineplayer.app",
+          "description": "OnlinePlayer",
+          "icon": "/sitelogo/onlineplayer.app.ico"
         }
       ]
     },
