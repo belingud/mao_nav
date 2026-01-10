@@ -346,6 +346,13 @@ export const mockData = {
           "url": "https://yyzz.426720.xyz/#",
           "description": "提取网盘直链",
           "icon": ""
+        },
+        {
+          "id": "geegeng",
+          "name": "桔梗云盘",
+          "url": "https://www.geegeng.com/",
+          "description": "桔梗云盘 1T",
+          "icon": "/sitelogo/www.geegeng.com.ico"
         }
       ]
     },
