@@ -353,6 +353,13 @@ export const mockData = {
           "url": "https://www.geegeng.com/",
           "description": "桔梗云盘 1T",
           "icon": "/sitelogo/www.geegeng.com.ico"
+        },
+        {
+          "id": "terabox",
+          "name": "TeraBox",
+          "url": "https://www.terabox.com/",
+          "description": "TeraBox AI/PPT/网盘",
+          "icon": "/sitelogo/www.terabox.com.ico"
         }
       ]
     },
