@@ -134,13 +134,6 @@ export const mockData = {
           "icon": "/sitelogo/chat.deepseek.com.ico"
         },
         {
-          "id": "mcpflow",
-          "name": "MCPFlow",
-          "url": "https://mcpflow.io",
-          "description": "Chat with gpt-4.1-mini",
-          "icon": "/sitelogo/mcpflow.io.ico"
-        },
-        {
           "id": "zai",
           "name": "Z.ai",
           "url": "https://chat.z.ai",
