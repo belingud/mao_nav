@@ -78,6 +78,13 @@ export const mockData = {
           "icon": "/sitelogo/github.com.ico"
         },
         {
+          "id": "qianwen",
+          "name": "千问",
+          "url": "https://www.qianwen.com/",
+          "description": "千问AI助手",
+          "icon": "/sitelogo/www.qianwen.com.ico"
+        },
+        {
           "id": "qwen",
           "name": "Chat Qwen",
           "url": "https://chat.qwen.ai/",
