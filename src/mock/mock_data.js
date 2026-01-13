@@ -134,6 +134,13 @@ export const mockData = {
           "icon": "/sitelogo/chat.deepseek.com.ico"
         },
         {
+          "id": "chatglm",
+          "name": "智谱",
+          "url": "https://chatglm.cn/",
+          "description": "智谱AI对话助手",
+          "icon": "/sitelogo/chatglm.cn.ico"
+        },
+        {
           "id": "zai",
           "name": "Z.ai",
           "url": "https://chat.z.ai",
