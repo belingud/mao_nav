@@ -281,6 +281,13 @@ export const mockData = {
           "url": "https://grep.app",
           "description": "Grep",
           "icon": "/sitelogo/grep.app.ico"
+        },
+        {
+          "id": "aitmpl",
+          "name": "aitmpl",
+          "url": "https://www.aitmpl.com",
+          "description": "Claude Code Template",
+          "icon": "www.aitmpl.com.ico"
         }
       ]
     },
