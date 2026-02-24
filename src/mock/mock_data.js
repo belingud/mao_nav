@@ -288,6 +288,13 @@ export const mockData = {
           "url": "https://www.aitmpl.com",
           "description": "Claude Code Template",
           "icon": "www.aitmpl.com.ico"
+        },
+        {
+          "id": "mcpservers",
+          "name": "MCPServers",
+          "url": "https://mcpservers.org/",
+          "description": "MCPServers and SKILLs",
+          "icon": "/sitelogo/mcpservers.org.ico"
         }
       ]
     },
