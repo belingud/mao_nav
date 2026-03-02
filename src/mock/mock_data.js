@@ -381,6 +381,13 @@ export const mockData = {
           "url": "https://www.terabox.com/",
           "description": "TeraBox AI/PPT/网盘",
           "icon": "/sitelogo/www.terabox.com.ico"
+        },
+        {
+          "id": "wenjiangui",
+          "name": "在线文件柜",
+          "url": "https://wjg.yiwan.de",
+          "description": "临时文件柜",
+          "icon": "/sitelogo/wjg.yiwan.de.ico"
         }
       ]
     },
