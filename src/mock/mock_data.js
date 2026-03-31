@@ -167,6 +167,13 @@ export const mockData = {
           "url": "https://dr.miromind.ai/",
           "description": "MiroThinker DeepResearch",
           "icon": "/sitelogo/dr.miromind.ai.ico"
+        },
+        {
+          "id": "minimax-agent",
+          "name": "MiniMax Agent",
+          "url": "https://agent.minimaxi.com/",
+          "description": "MiniMax Agent",
+          "icon": "/sitelogo/agent.minimaxi.com.ico"
         }
       ]
     },
