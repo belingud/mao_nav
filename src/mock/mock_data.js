@@ -547,6 +547,13 @@ export const mockData = {
           "icon": "/sitelogo/tools.pdf24.org.ico"
         },
         {
+          "id": "ilovepdf",
+          "name": "iLovePDF",
+          "url": "https://www.ilovepdf.com",
+          "description": "PDF 在线转换与编辑",
+          "icon": "/sitelogo/www.ilovepdf.com.ico"
+        },
+        {
           "id": "mail.td",
           "name": "Mail.TD",
           "url": "https://mail.td/zh",
