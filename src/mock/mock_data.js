@@ -512,6 +512,13 @@ export const mockData = {
       "order": 7,
       "sites": [
         {
+          "id": "toolonline",
+          "name": "ToolOnline",
+          "url": "https://toolonline.net",
+          "description": "脑力训练和其他在线工具",
+          "icon": "/sitelogo/toolonline.net.ico"
+        },
+        {
           "id": "toolhelper",
           "name": "锤子工具箱",
           "url": "https://www.toolhelper.cn",
@@ -559,6 +566,13 @@ export const mockData = {
           "url": "https://www.ilovepdf.com",
           "description": "PDF 在线转换与编辑",
           "icon": "/sitelogo/www.ilovepdf.com.ico"
+        },
+        {
+          "id": "pdf365",
+          "name": "PDF365",
+          "url": "https://www.pdf365.cn/",
+          "description": "福昕 PDF 在线工具",
+          "icon": "/sitelogo/www.pdf365.cn.ico"
         },
         {
           "id": "mail.td",
