@@ -302,6 +302,13 @@ export const mockData = {
           "url": "https://mcpservers.org/",
           "description": "MCPServers and SKILLs",
           "icon": "/sitelogo/mcpservers.org.ico"
+        },
+        {
+          "id": "gitee",
+          "name": "Gitee",
+          "url": "https://gitee.com",
+          "description": "代码托管平台",
+          "icon": "/sitelogo/gitee.com.ico"
         }
       ]
     },
@@ -594,6 +601,20 @@ export const mockData = {
           "url": "https://temp-mail.io/zh",
           "description": "Tempmail",
           "icon": "/sitelogo/temp-mail.io.ico"
+        },
+        {
+          "id": "shorturl",
+          "name": "ShortURL",
+          "url": "https://www.shorturl.bot/",
+          "description": "短网址生成",
+          "icon": "/sitelogo/www.shorturl.bot.ico"
+        },
+        {
+          "id": "ippure",
+          "name": "IPPure",
+          "url": "https://ippure.com/",
+          "description": "IP纯净度查询",
+          "icon": "/sitelogo/ippure.com.ico"
         }
       ]
     },
