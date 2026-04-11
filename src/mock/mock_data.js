@@ -174,6 +174,13 @@ export const mockData = {
           "url": "https://agent.minimaxi.com/",
           "description": "MiniMax Agent",
           "icon": "/sitelogo/agent.minimaxi.com.ico"
+        },
+        {
+          "id": "arena-ai",
+          "name": "Arena AI",
+          "url": "https://arena.ai/",
+          "description": "AI模型对比和评测平台",
+          "icon": "/sitelogo/arena.ai.ico"
         }
       ]
     },
@@ -224,6 +231,34 @@ export const mockData = {
           "url": "https://cloud.tencent.com",
           "description": "腾讯云计算服务",
           "icon": "/sitelogo/cloud.tencent.com.ico"
+        },
+        {
+          "id": "upstash",
+          "name": "Upstash",
+          "url": "https://upstash.com/",
+          "description": "Serverless云数据库服务",
+          "icon": "/sitelogo/upstash.com.ico"
+        },
+        {
+          "id": "deno-deploy",
+          "name": "Deno Deploy",
+          "url": "https://dash.deno.com/",
+          "description": "Deno边缘部署平台",
+          "icon": "/sitelogo/dash.deno.com.ico"
+        },
+        {
+          "id": "deno-console",
+          "name": "Deno Console",
+          "url": "https://console.deno.com/",
+          "description": "Deno控制台",
+          "icon": "/sitelogo/console.deno.com.ico"
+        },
+        {
+          "id": "supabase",
+          "name": "Supabase",
+          "url": "https://supabase.com/",
+          "description": "开源Firebase替代品",
+          "icon": "/sitelogo/supabase.com.ico"
         },
         {
           "id": "huawei-cloud",
@@ -651,6 +686,20 @@ export const mockData = {
           "url": "https://onlineplayer.app",
           "description": "OnlinePlayer",
           "icon": "/sitelogo/onlineplayer.app.ico"
+        },
+        {
+          "id": "datatool",
+          "name": "DataTool",
+          "url": "https://www.datatool.vip/",
+          "description": "在线视频下载工具",
+          "icon": "/sitelogo/www.datatool.vip.ico"
+        },
+        {
+          "id": "pipiyao",
+          "name": "Pipiyao",
+          "url": "https://www.pipiyao.cc/",
+          "description": "在线视频观看网站",
+          "icon": "/sitelogo/www.pipiyao.cc.ico"
         }
       ]
     },
