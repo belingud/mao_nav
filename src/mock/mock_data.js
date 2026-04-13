@@ -617,6 +617,49 @@ export const mockData = {
           "icon": "/sitelogo/www.pdf365.cn.ico"
         },
         {
+          "id": "shorturl",
+          "name": "ShortURL",
+          "url": "https://www.shorturl.bot/",
+          "description": "短网址生成",
+          "icon": "/sitelogo/www.shorturl.bot.ico"
+        },
+        {
+          "id": "ippure",
+          "name": "IPPure",
+          "url": "https://ippure.com/",
+          "description": "IP纯净度查询",
+          "icon": "/sitelogo/ippure.com.ico"
+        }
+      ]
+    },
+    {
+      "id": "email",
+      "name": "邮箱",
+      "icon": "📧",
+      "order": 8,
+      "sites": [
+        {
+          "id": "qq-mail",
+          "name": "QQ邮箱",
+          "url": "https://wx.mail.qq.com/",
+          "description": "QQ 邮箱网页版",
+          "icon": "/sitelogo/wx.mail.qq.com.ico"
+        },
+        {
+          "id": "163-mail",
+          "name": "163邮箱",
+          "url": "https://mail.163.com/",
+          "description": "163 邮箱网页版",
+          "icon": "/sitelogo/mail.163.com.ico"
+        },
+        {
+          "id": "qq-exmail",
+          "name": "腾讯企业邮箱",
+          "url": "https://exmail.qq.com/",
+          "description": "腾讯企业邮箱",
+          "icon": "/sitelogo/exmail.qq.com.ico"
+        },
+        {
           "id": "mail.td",
           "name": "Mail.TD",
           "url": "https://mail.td/zh",
@@ -636,20 +679,6 @@ export const mockData = {
           "url": "https://temp-mail.io/zh",
           "description": "Tempmail",
           "icon": "/sitelogo/temp-mail.io.ico"
-        },
-        {
-          "id": "shorturl",
-          "name": "ShortURL",
-          "url": "https://www.shorturl.bot/",
-          "description": "短网址生成",
-          "icon": "/sitelogo/www.shorturl.bot.ico"
-        },
-        {
-          "id": "ippure",
-          "name": "IPPure",
-          "url": "https://ippure.com/",
-          "description": "IP纯净度查询",
-          "icon": "/sitelogo/ippure.com.ico"
         }
       ]
     },
@@ -657,7 +686,7 @@ export const mockData = {
       "id": "entertainment",
       "name": "娱乐休闲",
       "icon": "🎮",
-      "order": 8,
+      "order": 9,
       "sites": [
         {
           "id": "bilibili",
@@ -707,7 +736,7 @@ export const mockData = {
       "id": "office",
       "name": "办公协作",
       "icon": "💼",
-      "order": 9,
+      "order": 10,
       "sites": [
         {
           "id": "notion",
