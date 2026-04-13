@@ -12,10 +12,14 @@
 
 from __future__ import annotations
 
+import sys
+
+# Avoid creating __pycache__ during normal script execution.
+sys.dont_write_bytecode = True
+
 import io
 import json
 import re
-import sys
 from collections import Counter
 from dataclasses import dataclass, field
 from enum import Enum, auto
@@ -487,11 +491,18 @@ def build_client(config: IconConfig) -> httpx.Client:
     )
 
 
+def format_size_k(size_bytes: int) -> str:
+    size_k = size_bytes / 1024
+    display = f"{size_k:.1f}".rstrip("0").rstrip(".")
+    return f"{display}K"
+
+
 def save_icon(icon_info: IconInfo, data: bytes, output_dir: Path) -> FailureReason | None:
     output_path = icon_info.output_path(output_dir)
     try:
         output_path.write_bytes(data)
-        logger.info(f"✅ 下载成功: {icon_info.filename} ({output_path.stat().st_size} bytes)")
+        file_size = output_path.stat().st_size
+        logger.info(f"✅ 下载成功: {icon_info.filename} ({format_size_k(file_size)})")
         return None
     except OSError as exc:
         logger.warning(f"❌ 保存失败: {icon_info.filename} - {exc}")
