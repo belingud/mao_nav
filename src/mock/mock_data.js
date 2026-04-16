@@ -596,6 +596,13 @@ export const mockData = {
           "icon": "/sitelogo/tinypng.com.ico"
         },
         {
+          "id": "pic-sl-al",
+          "name": "Pic.sl.al",
+          "url": "https://pic.sl.al/",
+          "description": "简约图床，可临时使用",
+          "icon": "/sitelogo/pic.sl.al.ico"
+        },
+        {
           "id": "pdf24",
           "name": "PDF24",
           "url": "https://tools.pdf24.org/zh/",
