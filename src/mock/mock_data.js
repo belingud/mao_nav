@@ -729,13 +729,6 @@ export const mockData = {
           "url": "https://www.datatool.vip/",
           "description": "在线视频下载工具",
           "icon": "/sitelogo/www.datatool.vip.ico"
-        },
-        {
-          "id": "pipiyao",
-          "name": "Pipiyao",
-          "url": "https://www.pipiyao.cc/",
-          "description": "在线视频观看网站",
-          "icon": "/sitelogo/www.pipiyao.cc.ico"
         }
       ]
     },
