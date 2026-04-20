@@ -73,6 +73,7 @@ Use these rules when editing:
 - The icon path should normally be `/sitelogo/<host>.ico`.
 - Do not worry whether the icon file already exists.
 - Missing icons can be fetched later by `download_ico.py`.
+- To download missing icons, run: `./download_ico.py`.
 - Do not block a config change just because the icon has not been downloaded yet.
 
 ## Scope Control

@@ -729,6 +729,20 @@ export const mockData = {
           "url": "https://www.datatool.vip/",
           "description": "在线视频下载工具",
           "icon": "/sitelogo/www.datatool.vip.ico"
+        },
+        {
+          "id": "gimy-tv",
+          "name": "GIMY 剧迷",
+          "url": "https://gimy.tv/",
+          "description": "剧迷影视",
+          "icon": "/sitelogo/gimy.tv.ico"
+        },
+        {
+          "id": "bt-tv",
+          "name": "宝拓影视",
+          "url": "https://tv.777828.xyz/",
+          "description": "宝拓影视",
+          "icon": "/sitelogo/tv.777828.xyz.ico"
         }
       ]
     },
