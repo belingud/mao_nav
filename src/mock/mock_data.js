@@ -411,6 +411,13 @@ export const mockData = {
           "icon": "/sitelogo/so.252035.xyz.ico"
         },
         {
+          "id": "pansou-linuxdo",
+          "name": "PanSo LinuxDo",
+          "url": "https://ps.252035.xyz/",
+          "description": "LinuxDo社区版盘搜",
+          "icon": "/sitelogo/ps.252035.xyz.ico"
+        },
+        {
           "id": "yyzz",
           "name": "直连提取",
           "url": "https://yyzz.426720.xyz/#",
