@@ -738,6 +738,13 @@ export const mockData = {
           "icon": "/sitelogo/www.datatool.vip.ico"
         },
         {
+          "id": "kukutool",
+          "name": "KuKuTool",
+          "url": "https://dy.kukutool.com/",
+          "description": "社交媒体视频下载",
+          "icon": "/sitelogo/dy.kukutool.com.ico"
+        },
+        {
           "id": "gimy-tv",
           "name": "GIMY 剧迷",
           "url": "https://gimy.tv/",
