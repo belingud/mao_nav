@@ -99,6 +99,13 @@ export const mockData = {
           "icon": "/sitelogo/aistudio.google.com.ico"
         },
         {
+          "id": "xiaomi-mimo-studio",
+          "name": "小米 Mimo Studio",
+          "url": "https://aistudio.xiaomimimo.com/",
+          "description": "小米 Mimo 大模型对话页面",
+          "icon": "/sitelogo/aistudio.xiaomimimo.com.ico"
+        },
+        {
           "id": "yuanbao",
           "name": "元宝",
           "url": "https://yuanbao.tencent.com",
