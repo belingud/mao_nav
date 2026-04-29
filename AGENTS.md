@@ -13,6 +13,7 @@ Unless the user explicitly asks for a code fix or feature, only edit:
 - `download_ico.py`
 
 Do not modify Vue components, styles, router, deployment files, or backend files for normal site/category updates.
+Never run `npm run xxx`/`pnpm run xxx`
 </IMPORTANT>
 
 If you need to edit other files, ask for permission first.
