@@ -458,6 +458,13 @@ export const mockData = {
           "url": "https://www.quwenjian.cn/",
           "description": "临时快递柜",
           "icon": "/sitelogo/www.quwenjian.cn.ico"
+        },
+        {
+          "id": "file-courier-demo",
+          "name": "文件快递柜 Demo",
+          "url": "https://share.lanol.cn/",
+          "description": "文件快递柜官方仓库Demo",
+          "icon": "/sitelogo/share.lanol.cn.ico"
         }
       ]
     },
