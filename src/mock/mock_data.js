@@ -451,6 +451,13 @@ export const mockData = {
           "url": "https://wjg.yiwan.de",
           "description": "临时文件柜",
           "icon": "/sitelogo/wjg.yiwan.de.ico"
+        },
+        {
+          "id": "quwenjian",
+          "name": "取文件",
+          "url": "https://www.quwenjian.cn/",
+          "description": "临时快递柜",
+          "icon": "/sitelogo/www.quwenjian.cn.ico"
         }
       ]
     },
