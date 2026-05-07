@@ -778,6 +778,13 @@ export const mockData = {
           "url": "https://tv.777828.xyz/",
           "description": "宝拓影视",
           "icon": "/sitelogo/tv.777828.xyz.ico"
+        },
+        {
+          "id": "ddys",
+          "name": "低调影视",
+          "url": "https://ddys.app/",
+          "description": "会员制观影网站",
+          "icon": "/sitelogo/ddys.app.ico"
         }
       ]
     },
