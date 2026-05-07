@@ -1,41 +1,41 @@
 # AGENTS.md
 
-Guidance for agents working in this repository.
+在此仓库中工作的 Agent 指南。
 
-## Core Rule
+## 核心规则
 
-This repo is mainly maintained by editing navigation config, not by changing application code.
+本仓库主要通过编辑导航配置来维护，而不是修改应用代码。
 
 <IMPORTANT>
-Unless the user explicitly asks for a code fix or feature, only edit:
+除非用户明确要求修复代码或添加功能，否则只编辑：
 
 - `src/mock/mock_data.js`
 - `download_ico.py`
 
-Do not modify Vue components, styles, router, deployment files, or backend files for normal site/category updates.
-Never run `npm run xxx`/`pnpm run xxx`
+对于常规的站点/分类更新，不要修改 Vue 组件、样式、路由、部署文件或后端文件。
+永远不要运行 `npm run xxx`/`pnpm run xxx`
 </IMPORTANT>
 
-If you need to edit other files, ask for permission first.
+如果需要编辑其他文件，先征得许可。
 
-## Main File
+## 主文件
 
-`src/mock/mock_data.js` is the source of truth for navigation data.
+`src/mock/mock_data.js` 是导航数据的唯一数据源。
 
-When the user asks to:
+当用户要求：
 
-- add a website
-- remove a website
-- move a website
-- rename a category
-- create or merge categories
-- update descriptions
+- 添加网站
+- 移除网站
+- 移动网站
+- 重命名分类
+- 创建或合并分类
+- 更新描述
 
-edit `src/mock/mock_data.js`.
+时，编辑 `src/mock/mock_data.js`。
 
-## Data Rules
+## 数据规则
 
-Keep the existing structure:
+保持现有结构：
 
 ```js
 export const mockData = {
@@ -59,33 +59,34 @@ export const mockData = {
 }
 ```
 
-Use these rules when editing:
+编辑时遵循以下规则：
 
-- Prefer existing categories first.
-- Only create a new category when the user asks for it or when the current category is clearly too mixed.
-- Keep category names short and clear.
-- Keep site descriptions short.
-- Use lowercase kebab-case `id` values when practical.
-- Keep `order` values stable and sensible.
-- Preserve the current file style and formatting.
+- 优先使用现有分类。
+- 仅当用户要求或当前分类明显太杂时，才创建新分类。
+- 分类名称保持简短清晰。
+- 站点描述保持简短。
+- 在可行的情况下使用小写 kebab-case 格式的 `id` 值。
+- 保持 `order` 值稳定合理。
+- 保留当前文件风格和格式。
 
-## Icon Rules
+## 图标规则
 
-- The icon path should normally be `/sitelogo/<host>.ico`.
-- Do not worry whether the icon file already exists.
-- Missing icons can be fetched later by `download_ico.py`.
-- To download missing icons, run: `./download_ico.py`.
-- Do not block a config change just because the icon has not been downloaded yet.
+- 图标路径通常应为 `/sitelogo/<域名>.ico`。
+- 无需担心图标文件是否已存在。
+- 缺失的图标稍后可通过 `download_ico.py` 获取。
+- 下载缺失图标运行：`./download_ico.py`。
+- 不要因为图标尚未下载而阻塞配置变更。
+- 添加新网站后，务必运行 `./download_ico.py` 尝试下载图标。
 
-## Scope Control
+## 范围控制
 
-For normal navigation maintenance, do not "clean up" unrelated entries.
+对于常规导航维护，不要"清理"不相关的条目。
 
-Do not:
+禁止：
 
-- refactor the file structure
-- rename unrelated ids
-- reorder large sections without being asked
-- edit source code just because it looks improvable
+- 重构文件结构
+- 重命名无关的 id
+- 未经要求重新排序大段内容
+- 仅仅因为看起来可以改进就编辑源码
 
-If a request really requires app code changes, stop and ask before changing files outside `src/mock/mock_data.js`.
+如果某需求确实需要修改应用代码，在修改 `src/mock/mock_data.js` 之外的文件之前，先停下来询问。
