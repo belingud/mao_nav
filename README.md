@@ -17,40 +17,6 @@
 - 2025-08-11 增加夜间模式，增加默认搜索引擎设置功能。
 - 2025-03-25 **v2.0.0** 安全架构升级：密钥迁移至服务端 Functions，同时支持 Cloudflare Pages 和 Vercel 部署。
 
-## 🔄 从 v1.x 升级到 v2.0
-
-v2.0 将敏感密钥（管理员密码、GitHub Token）从前端迁移到了服务端 Functions，**前端代码不再包含任何敏感信息**。
-
-### 升级步骤
-
-**1. 同步代码**
-
-```bash
-# 如果你 fork 了本项目，同步上游代码
-git fetch upstream
-git merge upstream/master
-```
-
-**2. 修改部署平台的环境变量**
-
-在 Cloudflare Pages / Vercel 的环境变量设置中：
-
-| 操作 | 变量名 | 说明 |
-|---|---|---|
-| **新增** | `ADMIN_PASSWORD` | 值与原来的 `VITE_ADMIN_PASSWORD` 一致，**设置为 Encrypted 类型** |
-| **新增** | `GITHUB_TOKEN` | 值与原来的 `VITE_GITHUB_TOKEN` 一致，**设置为 Encrypted 类型** |
-| **保留** | `VITE_GITHUB_OWNER` | 不变 |
-| **保留** | `VITE_GITHUB_REPO` | 不变 |
-| **保留** | `VITE_GITHUB_BRANCH` | 不变 |
-| **删除** | `VITE_ADMIN_PASSWORD` | 已迁移到服务端，不再需要 |
-| **删除** | `VITE_GITHUB_TOKEN` | 已迁移到服务端，不再需要 |
-
-**3. 重新部署**
-
-修改环境变量后，触发一次重新部署即可。
-
-> **注意**：如果你不删除旧的 `VITE_` 密钥变量，它们仍会被打包到前端代码中。请务必删除 `VITE_ADMIN_PASSWORD` 和 `VITE_GITHUB_TOKEN`。
-
 ## 效果预览
 示例站点: [猫猫导航](https://nav.maodeyu.fun)
 ![](preview.png)
@@ -69,6 +35,8 @@ git merge upstream/master
 
 ## 🚀 快速开始
 图文教程可访问[猫猫导航图文教程](https://blog.maodeyu.fun/2025/07/16/nav_mao/)
+
+> 💬 **部署遇到问题？** 欢迎加入 QQ 交流群：**494775899**，群里有热心小伙伴一起帮你排查问题。
 ### 🚀 部署到 Cloudflare（推荐）
 
 **1. Fork 本项目**
@@ -326,6 +294,42 @@ npm run build && npx wrangler pages dev dist
 - [ ] 已测试构建命令 `npm run build`
 - [ ] 已验证 `dist` 目录生成正常
 
+## 🔄 从 v1.x 升级到 v2.0
+
+> 仅老用户（v1.x 已部署）需要看这一节，新用户可以跳过。
+
+v2.0 将敏感密钥（管理员密码、GitHub Token）从前端迁移到了服务端 Functions，**前端代码不再包含任何敏感信息**。
+
+### 升级步骤
+
+**1. 同步代码**
+
+```bash
+# 如果你 fork 了本项目，同步上游代码
+git fetch upstream
+git merge upstream/master
+```
+
+**2. 修改部署平台的环境变量**
+
+在 Cloudflare Pages / Vercel 的环境变量设置中：
+
+| 操作 | 变量名 | 说明 |
+|---|---|---|
+| **新增** | `ADMIN_PASSWORD` | 值与原来的 `VITE_ADMIN_PASSWORD` 一致，**设置为 Encrypted 类型** |
+| **新增** | `GITHUB_TOKEN` | 值与原来的 `VITE_GITHUB_TOKEN` 一致，**设置为 Encrypted 类型** |
+| **保留** | `VITE_GITHUB_OWNER` | 不变 |
+| **保留** | `VITE_GITHUB_REPO` | 不变 |
+| **保留** | `VITE_GITHUB_BRANCH` | 不变 |
+| **删除** | `VITE_ADMIN_PASSWORD` | 已迁移到服务端，不再需要 |
+| **删除** | `VITE_GITHUB_TOKEN` | 已迁移到服务端，不再需要 |
+
+**3. 重新部署**
+
+修改环境变量后，触发一次重新部署即可。
+
+> **注意**：如果你不删除旧的 `VITE_` 密钥变量，它们仍会被打包到前端代码中。请务必删除 `VITE_ADMIN_PASSWORD` 和 `VITE_GITHUB_TOKEN`。
+
 ## 🤝 贡献
 
 欢迎提交 Issue 和 Pull Request！
@@ -355,6 +359,7 @@ npm run build && npx wrangler pages dev dist
 
 - 提交 [Issue](https://github.com/your-username/mao_nav/issues)
 - 发起 [Discussion](https://github.com/your-username/mao_nav/discussions)
+- 加入 QQ 交流群：**494775899**（部署问题求助 / 使用交流）
 
 ---
 
