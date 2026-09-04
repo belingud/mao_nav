@@ -253,7 +253,7 @@ const loadCategories = async () => {
 
   try {
     // 直接加载本地数据，避免GitHub API调用
-    const { mockData } = await import('../mock/mock_data.js')
+    const { mockData } = await import('../mock/navigation_data.js')
     categories.value = mockData.categories || []
     navTitle.value = mockData.title || '猫猫导航'
     console.log('✅ 本地数据加载成功，分类数量:', categories.value.length)
@@ -307,7 +307,7 @@ const skipLoading = async () => {
 
   // 尝试加载本地数据
   try {
-    const { mockData } = await import('../mock/mock_data.js')
+    const { mockData } = await import('../mock/navigation_data.js')
     categories.value = mockData.categories || []
     navTitle.value = mockData.title || '猫猫导航'
     console.log('跳过加载后，使用本地数据:', categories.value.length)
@@ -346,11 +346,12 @@ const saveToGitHub = async () => {
       console.warn('加载当前数据失败，使用默认值:', error)
     }
 
-    // 保存完整的数据结构，保留 search 字段
+    // 保存完整的数据结构，保留系统设置字段
     await saveCategoriesToGitHub({
       categories: categories.value,
       title: navTitle.value,
-      search: currentData.search || 'bing'  // 保留搜索引擎设置
+      search: currentData.search || 'bing',
+      icp: currentData.icp || ''
     })
     showDialog(
       'success',
@@ -359,7 +360,7 @@ const saveToGitHub = async () => {
       [
         '• 更改将在 2-3 分钟内自动部署到线上',
         '• 部署完成后，您可以在前台页面看到最新内容',
-        '• 如有问题，请检查Vercel或CFpage是否触发自动部署'
+        '• 如有问题，请检查部署平台是否触发自动部署'
       ]
     )
   } catch (error) {
@@ -410,7 +411,7 @@ onMounted(() => {
     isAuthenticated.value = true
 
     // Load local data for initial display
-    import('../mock/mock_data.js').then(({ mockData }) => {
+    import('../mock/navigation_data.js').then(({ mockData }) => {
       categories.value = mockData.categories || []
       navTitle.value = mockData.title || '猫猫导航'
     }).catch(() => {
